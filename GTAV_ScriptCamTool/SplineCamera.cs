@@ -94,7 +94,7 @@ namespace GTAV_ScriptCamTool
             {
                 if (_renderSceneTimer.Enabled && Game.GameTime > _renderSceneTimer.Waiter)
                 {
-                    Function.Call(Hash._0x0923DBF87DFF735E, _mainCamera.Position.X, _mainCamera.Position.Y, _mainCamera.Position.Z);
+                    //Function.Call(Hash._0x0923DBF87DFF735E, _mainCamera.Position.X, _mainCamera.Position.Y, _mainCamera.Position.Z);
                     _renderSceneTimer.Reset();
                 }
 

@@ -7,6 +7,10 @@ using GTA.Math;
 using GTA.Native;
 using NativeUI;
 using System.Linq;
+using GTA.UI;
+
+using UIContainer = GTA.UI.Container;
+using UIText = GTA.UI.Text;
 
 namespace GTAV_ScriptCamTool
 {
@@ -56,6 +60,15 @@ namespace GTAV_ScriptCamTool
             menuItemA = new UIMenuItem("Reset All Cams");
             menuItemA.Activated += (sender, item) => ResetAllCameras();
             mainMenu.AddItem(menuItemA);
+
+            menuItemA = new UIMenuItem("Shake On");
+            menuItemA.Activated += (sender, item) => ShakeOn();
+            mainMenu.AddItem(menuItemA);
+
+            menuItemA = new UIMenuItem("Shake Off");
+            menuItemA.Activated += (sender, item) => ShakeOff();
+            mainMenu.AddItem(menuItemA);
+
             menuItemA = new UIMenuItem("Close");
             menuItemA.Activated += (sender, item) => activePool.CloseAllMenus();
             mainMenu.AddItem(menuItemA);
@@ -188,30 +201,44 @@ namespace GTAV_ScriptCamTool
         {
             if (selector.MainCamera.IsActive || splineCam.MainCamera.IsActive)
             {
-                UI.ShowSubtitle("Camera is Active.");
+                GTA.UI.Screen.ShowSubtitle("Camera is Active.");
                 return;
             }
 
-            Game.Player.Character.FreezePosition = true;
-            selector.EnterCameraView(Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 0, 10f)));
+            Game.Player.Character.IsPositionFrozen = true;
+            selector.EnterCameraView(Game.Player.Character.GetOffsetPosition(new Vector3(0, 0, 10f)));
+            ToggleMenu();
+        }
+
+        private void ShakeOn()
+        {
+            GTA.UI.Screen.ShowSubtitle("Shake On");
+            selector.MainCamera.Shake(CameraShake.Hand, 0.5f);
+            ToggleMenu();
+        }
+
+        private void ShakeOff()
+        {
+            GTA.UI.Screen.ShowSubtitle("Shake Off");
+            selector.MainCamera.StopShaking();
             ToggleMenu();
         }
 
         private void ExitPointSelector()
         {
             selector.ExitCameraView();
-            Game.Player.Character.FreezePosition = false;
+            Game.Player.Character.IsPositionFrozen = false;
         }
 
         private void StartInterpolatingCam()
         {
             if (splineCam.Nodes.Count < 2)
             {
-                UI.ShowSubtitle("Setup camera nodes first!");
+                GTA.UI.Screen.ShowSubtitle("Setup camera nodes first!");
                 return;
             }
 
-            splineCam.EnterCameraView(Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 0, 10f)));
+            splineCam.EnterCameraView(Game.Player.Character.GetOffsetPosition(new Vector3(0, 0, 10f)));
         }
 
         private void StopInterpolatingCam()
@@ -223,7 +250,7 @@ namespace GTAV_ScriptCamTool
             }
 
             else
-                UI.ShowSubtitle("Camera not active.");
+                GTA.UI.Screen.ShowSubtitle("Camera not active.");
         }
 
         private void ResetAllCameras()
@@ -244,7 +271,7 @@ namespace GTAV_ScriptCamTool
             selector = new PositionSelector(Vector3.Zero, Vector3.Zero);
         }
 
-        protected override void Dispose(bool A_0)
+        /*protected override void Dispose(bool A_0)
         {
             if (splineCam != null && splineCam.UsePlayerView)
             {
@@ -256,6 +283,6 @@ namespace GTAV_ScriptCamTool
             Function.Call(Hash.CLEAR_FOCUS);
 
             base.Dispose(A_0);
-        }
+        }*/
     }
 }

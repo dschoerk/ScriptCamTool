@@ -56,8 +56,9 @@ namespace GTAV_ScriptCamTool
 
         public static SizeF GetScreenResolutionMantainRatio()
         {
-            int screenw = Game.ScreenResolution.Width;
-            int screenh = Game.ScreenResolution.Height;
+
+            float screenw = GTA.UI.Screen.Width;
+            float screenh = GTA.UI.Screen.Height;
             const float height = 1080f;
             float ratio = (float)screenw / screenh;
             var width = height * ratio;

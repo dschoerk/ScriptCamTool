@@ -27,7 +27,7 @@ namespace GTAV_ScriptCamTool
             this.GamepadHandler.LeftStickChanged += LeftStickChanged;
             this.GamepadHandler.RightStickChanged += RightStickChanged;
             this.GamepadHandler.LeftStickPressed += LeftStickPressed;
-            this._instructionalButtons = new Scaleform(Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, "instructional_buttons"));
+            this._instructionalButtons = new Scaleform("instructional_buttons");
             this._mainCamera = World.CreateCamera(position, rotation, 50f);
             this._mainCamera.IsActive = false;
             this._renderSceneTimer = new Timer(5000);
@@ -70,10 +70,11 @@ namespace GTAV_ScriptCamTool
 
         public void EnterCameraView(Vector3 position)
         {
-            Function.Call(Hash.DO_SCREEN_FADE_OUT, 1200);
-            Script.Wait(1100);
+            Function.Call(Hash.DO_SCREEN_FADE_OUT, 120);
+            Script.Wait(100);
             MainCamera.Position = position;
             MainCamera.IsActive = true;
+            //MainCamera.Shake(CameraShake.Hand, 0.5f);
             World.RenderingCamera = MainCamera;
             Script.Wait(100);
             Function.Call(Hash.DO_SCREEN_FADE_IN, 800);
@@ -96,7 +97,7 @@ namespace GTAV_ScriptCamTool
             {
                 if (_renderSceneTimer.Enabled && Game.GameTime > _renderSceneTimer.Waiter)
                 {
-                    Function.Call(Hash._0x0923DBF87DFF735E, _mainCamera.Position.X, _mainCamera.Position.Y, _mainCamera.Position.Z);
+                    //Function.Call(Hash._0x0923DBF87DFF735E, _mainCamera.Position.X, _mainCamera.Position.Y, _mainCamera.Position.Z);
                     _renderSceneTimer.Reset();
                 }
 
@@ -165,7 +166,7 @@ namespace GTAV_ScriptCamTool
 
         private void RenderIntructionalButtons()
         {
-            _instructionalButtons.CallFunction("CLEAR_ALL");
+            /*_instructionalButtons.CallFunction("CLEAR_ALL");
             _instructionalButtons.CallFunction("TOGGLE_MOUSE_BUTTONS", false);
             string str = Function.Call<string>(Hash._0x0499D7B09FC9B407, 2, 24, 0);
             _instructionalButtons.CallFunction("SET_DATA_SLOT", 4, str, "Select Position");
@@ -184,7 +185,9 @@ namespace GTAV_ScriptCamTool
             _instructionalButtons.CallFunction("SET_DATA_SLOT", 0, args[3], args[2], args[1], args[0], "Move");
             _instructionalButtons.CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80);
             _instructionalButtons.CallFunction("DRAW_INSTRUCTIONAL_BUTTONS", 0);
-            _instructionalButtons.Render2D();
+            _instructionalButtons.Render2D();*/
         }
+
+        
     }
 }

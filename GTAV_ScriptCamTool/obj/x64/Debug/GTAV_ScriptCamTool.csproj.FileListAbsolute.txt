@@ -1,0 +1,9 @@
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\obj\x64\Debug\GTAV_ScriptCamTool.csprojResolveAssemblyReference.cache
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\bin\x64\Debug\GTAV_ScriptCamTool.dll
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\bin\x64\Debug\GTAV_ScriptCamTool.pdb
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\bin\x64\Debug\NativeUI.dll
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\bin\x64\Debug\ScriptHookVDotNet3.dll
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\bin\x64\Debug\ScriptHookVDotNet3.xml
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\obj\x64\Debug\GTAV_ScriptCamTool.dll
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\obj\x64\Debug\GTAV_ScriptCamTool.pdb
+E:\dev\GTA\ScriptCamTool\GTAV_ScriptCamTool\bin\x64\Debug\NativeUI.pdb
